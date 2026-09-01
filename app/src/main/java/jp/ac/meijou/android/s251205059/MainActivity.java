@@ -66,6 +66,39 @@ public class MainActivity extends AppCompatActivity {
                 text->binding.textView.setText(text)
         );
 
+        binding.buttonA.setOnClickListener(view->{
+            prefDataStore.setString("graph","a");
+            showGraph("a");
+        });
+        binding.buttonB.setOnClickListener(view->{
+            prefDataStore.setString("graph","b");
+            showGraph("b");
+        });
+        Optional<String> gid= prefDataStore.getString("graph");
+        if(gid.isPresent()){
+            showGraph(gid.get());
+        }
+        else {
+            showGraph("unknown");
+        }
+        binding.graphIdInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String str=editable.toString();
+                showGraph(str);
+                saveGraphId(str);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+        });
 
         binding.editTextText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -84,6 +117,33 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void showGraph(String key){
+        if("a".equals(key)){
+            binding.imageView.setImageResource(R.drawable.outline_accessible_forward_24);
+            binding.graphName.setText("a");
+        }
+        else if("b".equals(key)){
+            binding.imageView.setImageResource(R.drawable.outline_accessibility_new_24);
+            binding.graphName.setText("b");
+        }
+        else {
+            binding.imageView.setImageResource(R.drawable.ic_launcher_foreground);
+            binding.graphName.setText("unknown");
+        }
+    }
+
+    private void saveGraphId(String key){
+        if("a".equals(key)){
+            prefDataStore.setString("graph","a");
+        }
+        else if("b".equals(key)){
+            prefDataStore.setString("graph","b");
+        }
+        else {
+            prefDataStore.setString("graph","unknown");
+        }
     }
 
 
