@@ -44,11 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//        TextView textView=findViewById(R.id.text_view);
-////        textView.setText(R.string.text);
+////        TextView textView=findViewById(R.id.text_view);
+//        textView.setText(R.string.text);
 //        textView.setText(R.string.text);
 //        ImageView imageView=findViewById(R.id.imageView);
-////        imageView.setImageResource(R.drawable.outline_accessible_forward_24);
+//        imageView.setImageResource(R.drawable.outline_accessible_forward_24);
 //        imageView.setImageResource(R.drawable.outline_accessible_forward_24);
 //        binding.changeButton.setOnClickListener(view->{
 //            binding.textView.setText(binding.editTextText.getText());
