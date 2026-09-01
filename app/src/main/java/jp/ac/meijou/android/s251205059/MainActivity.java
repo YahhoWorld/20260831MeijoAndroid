@@ -10,9 +10,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Optional;
 
 import jp.ac.meijou.android.s251205059.databinding.ActivityMainBinding;
 
@@ -41,23 +44,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        TextView textView=findViewById(R.id.text_view);
+//        TextView textView=findViewById(R.id.text_view);
+////        textView.setText(R.string.text);
 //        textView.setText(R.string.text);
-        textView.setText(R.string.text);
-        ImageView imageView=findViewById(R.id.imageView);
+//        ImageView imageView=findViewById(R.id.imageView);
+////        imageView.setImageResource(R.drawable.outline_accessible_forward_24);
 //        imageView.setImageResource(R.drawable.outline_accessible_forward_24);
-        imageView.setImageResource(R.drawable.outline_accessible_forward_24);
-        binding.changeButton.setOnClickListener(view->{
-            binding.textView.setText(binding.editTextText.getText());
-            Button b=(Button)view;
-            b.setTextColor(getColor(R.color.black));
-        });
+//        binding.changeButton.setOnClickListener(view->{
+//            binding.textView.setText(binding.editTextText.getText());
+//            Button b=(Button)view;
+//            b.setTextColor(getColor(R.color.black));
+//        });
 
 
         binding.saveButton.setOnClickListener(view->{
             String text=binding.editTextText.getText().toString();
+            Log.d("meijo","saved");
             prefDataStore.setString("text",text);
         });
+        prefDataStore.getString("text").ifPresent(
+                text->binding.textView.setText(text)
+        );
+
 
         binding.editTextText.addTextChangedListener(new TextWatcher() {
             @Override
