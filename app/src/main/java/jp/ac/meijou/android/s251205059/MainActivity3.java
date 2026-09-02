@@ -15,6 +15,8 @@ public class MainActivity3 extends AppCompatActivity {
 
     private float firstNum=0;
     private float secondNum=0;
+    private boolean isEditingFirst=true;
+    private boolean isEditingSecond=false;
     private char op;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +35,122 @@ public class MainActivity3 extends AppCompatActivity {
             return insets;
         });
 
+        // intent
+        var intent=getIntent();
+        String sentText=intent.getStringExtra("editText");
+        binding.output.setText(sentText);
+
+
+
+        // calc
+
         binding.button0.setOnClickListener(view->{
-            firstNum*=10;
+            handleClickNumButton(0);
         });
+        binding.button1.setOnClickListener(view->{
+            handleClickNumButton(1);
+        });
+        binding.button2.setOnClickListener(view->{
+            handleClickNumButton(2);
+        });
+        binding.button3.setOnClickListener(view->{
+            handleClickNumButton(3);
+        });
+        binding.button4.setOnClickListener(view->{
+            handleClickNumButton(4);
+        });
+        binding.button5.setOnClickListener(view->{
+            handleClickNumButton(5);
+        });
+        binding.button6.setOnClickListener(view->{
+            handleClickNumButton(6);
+        });
+        binding.button7.setOnClickListener(view->{
+            handleClickNumButton(7);
+        });
+        binding.button8.setOnClickListener(view->{
+            handleClickNumButton(8);
+        });
+        binding.button9.setOnClickListener(view->{
+            handleClickNumButton(9);
+        });
+
+        binding.buttonAdd.setOnClickListener(view ->{
+            handleClickOp('+');
+        });
+        binding.buttonMult.setOnClickListener(view ->{
+            handleClickOp('*');
+        });
+        binding.buttonMinus.setOnClickListener(view ->{
+            handleClickOp('-');
+        });
+        binding.buttonDiv.setOnClickListener(view ->{
+            handleClickOp('/');
+        });
+
+        binding.buttonAc.setOnClickListener(view->{
+            handleClickAc();
+        });
+
+        binding.buttonEq.setOnClickListener(view->
+                handleClickEq()
+        );
     }
 
-    private void addEventListentNumBottom(android.widget.Button bt,int num){
+    private void handleClickNumButton(int num){
+        if(isEditingFirst){
+            firstNum*=10;
+            firstNum+=num;
+            binding.output.setText(""+firstNum);
+        }
+        else if(isEditingSecond){
+            secondNum*=10;
+            secondNum+=num;
+            binding.output.setText(""+secondNum);
+        }
+    }
 
+    private void handleClickOp(char op){
+        if(!isEditingFirst)return;
+        this.op=op;
+        isEditingFirst=false;
+        isEditingSecond=true;
+    }
+
+    private void handleClickAc(){
+        isEditingFirst=true;
+        isEditingSecond=false;
+        firstNum=0;
+        secondNum=0;
+        this.op=' ';
+        binding.output.setText("");
+    }
+
+    private  void handleClickEq(){
+        if(!isEditingSecond)return;
+
+        float result=0;
+
+        switch (op){
+            case '+':
+                result=firstNum+secondNum;
+                break;
+
+            case '-':
+                result=firstNum-secondNum;
+                break;
+
+            case '*':
+                result=firstNum*secondNum;
+                break;
+
+            case '/':
+                result=firstNum/secondNum;
+                break;
+        }
+
+        binding.output.setText(""+result);
+
+        isEditingSecond=false;
     }
 }
