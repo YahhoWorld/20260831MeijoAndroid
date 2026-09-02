@@ -1,5 +1,6 @@
 package jp.ac.meijou.android.s251205059;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -39,6 +40,19 @@ public class MainActivity3 extends AppCompatActivity {
         var intent=getIntent();
         String sentText=intent.getStringExtra("editText");
         binding.output.setText(sentText);
+
+
+        // ok,cancel
+        binding.buttonOk.setOnClickListener(view->{
+            var okIntent=new Intent();
+            okIntent.putExtra("result",binding.output.getText().toString());
+            setResult(RESULT_OK,okIntent);
+            finish();
+        });
+        binding.buttonCancel.setOnClickListener(view->{
+            setResult(RESULT_CANCELED);
+            finish();
+        });
 
 
 
@@ -145,6 +159,7 @@ public class MainActivity3 extends AppCompatActivity {
                 break;
 
             case '/':
+                // ゼロ除算はjavaがinfinityにしてくれるので任せる.
                 result=firstNum/secondNum;
                 break;
         }
