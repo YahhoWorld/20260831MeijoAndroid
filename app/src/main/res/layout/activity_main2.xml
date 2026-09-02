@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
+
+    <Button
+        android:id="@+id/buttonA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="明示的Intent"
+        app:layout_constraintTop_toTopOf="@+id/buttonB"
+        app:layout_constraintEnd_toStartOf="@id/buttonB"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <Button
+        android:id="@+id/buttonB"
+        android:text="暗黙的的Intent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/buttonA"
+        app:layout_constraintStart_toEndOf="@+id/buttonA"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+        <TextView
+        android:id="@+id/text_visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="this is visible"
+
+        app:layout_constraintTop_toBottomOf="@+id/buttonA"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
+        /><!--            -->
+
+    <TextView
+        android:id="@+id/text_invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="this is invisible"
+
+        app:layout_constraintTop_toBottomOf="@+id/text_visible"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible"
+        /><!--        -->
+
+    <TextView
+        android:id="@+id/text_gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="this is gone"
+
+        app:layout_constraintTop_toBottomOf="@+id/text_invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        /><!--        -->
+
+    <EditText
+        android:id="@+id/intent_editText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintEnd_toStartOf="@+id/intent_button"
+        />
+
+    <Button
+        android:id="@+id/intent_button"
+        android:text="enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/intent_editText"
+        app:layout_constraintTop_toTopOf="@+id/intent_editText"
+        />
+
+    <TextView
+        android:id="@+id/intent_result"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="none"
+        android:textSize="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/intent_editText"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintEnd_toStartOf="@+id/intent_button"
+        />
+
+    <Button
+        android:id="@+id/button_result"
+        android:text="Action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/intent_editText"
+        app:layout_constraintTop_toTopOf="@+id/intent_result"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
