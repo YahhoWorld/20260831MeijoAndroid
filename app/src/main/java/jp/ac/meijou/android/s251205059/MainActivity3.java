@@ -19,6 +19,7 @@ public class MainActivity3 extends AppCompatActivity {
     private boolean isEditingFirst=true;
     private boolean isEditingSecond=false;
     private char op;
+    private float result=0;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,6 +126,13 @@ public class MainActivity3 extends AppCompatActivity {
     }
 
     private void handleClickOp(char op){
+        if(isEditingSecond){
+            handleClickEq();
+            var tmp=result;
+            handleClickAc();
+            binding.output.setText("("+tmp+")");
+            firstNum=tmp;
+        }
         if(!isEditingFirst)return;
         this.op=op;
         isEditingFirst=false;
@@ -142,8 +150,6 @@ public class MainActivity3 extends AppCompatActivity {
 
     private  void handleClickEq(){
         if(!isEditingSecond)return;
-
-        float result=0;
 
         switch (op){
             case '+':
