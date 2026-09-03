@@ -45,6 +45,12 @@ public class MainActivity6 extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+        update();
+    }
+
     private void update(){
         var currentNetwork=connectivityManager.getActiveNetwork();
         updateTransport(currentNetwork);
